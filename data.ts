@@ -47,5 +47,34 @@ export const projectsData = [
     title: 'NetConf Server',
     name: 'net-conf-repo',
     tech_used: ['python', 'jupyter', 'go', 'js']
-  }
+  },
+
 ]
+export const skills = {
+  front: [
+    'react',
+    'javascript',
+    'html',
+    'css',
+    'typescript',
+    'nextjs', 
+    'tailwindcss'
+  ],
+  back: [
+    'nodejs',
+    'python',
+    'go',
+    'expressjs',
+    'mongodb',
+    'sql',
+    'postgres',
+    'firebase'
+  ],
+  other: [
+    'git',
+    'gitlab',
+    'mac os',
+    'linux',
+    'adobe-photoshop'
+  ]
+}

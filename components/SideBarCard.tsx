@@ -1,6 +1,6 @@
 export const SideBarCard = ({ cardTitle, isSelected, currentView, setCurrentView }) => {
   const toggleCurrentView = () => {
-    currentView == cardTitle ? setCurrentView('')
+    currentView == cardTitle ? null
       : setCurrentView(cardTitle)
   }
   return (

@@ -7,8 +7,14 @@ export const Card = ({ title, name, techUsed }) => {
         <div className="border-1 border-white bg-white rounded-full my-1 flex items-center px-2" key={tech}>
           <CustomIcons tech={tech} />
           <p className='text-black p-2'>{tech}</p>
+          <hr />
+
         </div>
       ))}
+    </section>
+    <section className='flex gap-3'>
+      <button className='text-red-300  font-mono font-xs bg-black border-2 border-gray-100 rounded-lg p-1 w-20'>Visit</button>
+      <button className='bg-yellow-300 text-black rounded-full p-1 w-20'>Code</button>
     </section>
   </section>
 }
