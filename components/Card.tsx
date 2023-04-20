@@ -1,4 +1,5 @@
-export const Card = ({ title, name, techUsed }) => {
+
+export const Card = ({ title, name, techUsed, repoLink }) => {
   return <section className="w-full bg-black flex flex-col items-start justify-center gap-2 m-2 p-4 rounded-lg">
     <main className='text-white my-1'>{title}</main>
     <p className='text-white my-1'>{name}</p>
@@ -8,14 +9,12 @@ export const Card = ({ title, name, techUsed }) => {
           <CustomIcons tech={tech} />
           <p className='text-black p-2'>{tech}</p>
           <hr />
-
         </div>
       ))}
     </section>
-    <section className='flex gap-3'>
-      <button className='text-red-300  font-mono font-xs bg-black border-2 border-gray-100 rounded-lg p-1 w-20'>Visit</button>
-      <button className='bg-yellow-300 text-black rounded-full p-1 w-20'>Code</button>
-    </section>
+    <a className='bg-yellow-300 text-black rounded-full p-1 w-20 cursor:pointer hover:bg-green-300 text-center' href={repoLink} target='_blank'>
+      Code
+    </a>
   </section>
 }
 const CustomIcons = ({ tech }) => {
