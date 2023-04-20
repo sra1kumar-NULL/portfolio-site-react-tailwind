@@ -1,4 +1,10 @@
-export const SideBarCard = ({ cardTitle, isSelected, currentView, setCurrentView }) => {
+import { homeProps } from "./Home"
+
+interface sideBarCardProps extends homeProps{
+  cardTitle:string
+  isSelected:boolean
+}
+export const SideBarCard = ({ cardTitle, isSelected, currentView, setCurrentView }:sideBarCardProps) => {
   const toggleCurrentView = () => {
     currentView == cardTitle ? null
       : setCurrentView(cardTitle)

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { projectsData } from '../data'
+import { homeProps } from './Home'
 import { SideBarCard } from './SideBarCard'
 
-export const SideBar = ({ currentView, setCurrentView }) => {
+export const SideBar = ({ currentView, setCurrentView }:homeProps) => {
   return (
     <div className='w-full flex  flex-col gap-1 '>
       <section className="bg-black w-full rounded-md mt-1 flex flex-col items-center p-2  overflow-y-scroll rounded-lg max-h-96">

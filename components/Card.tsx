@@ -1,5 +1,10 @@
-
-export const Card = ({ title, name, techUsed, repoLink }) => {
+interface cardProps{
+  title:string
+  name:string
+  techUsed:string[]
+  repoLink:string
+}
+export const Card = ({ title, name, techUsed, repoLink }:cardProps) => {
   return <section className="w-full bg-black flex flex-col items-start justify-center gap-2 m-2 p-4 rounded-lg">
     <main className='text-white my-1'>{title}</main>
     <p className='text-white my-1'>{name}</p>
@@ -17,7 +22,7 @@ export const Card = ({ title, name, techUsed, repoLink }) => {
     </a>
   </section>
 }
-const CustomIcons = ({ tech }) => {
+const CustomIcons = ({ tech }:{tech:string}) => {
   return (<>
     {(() => {
       switch (tech) {

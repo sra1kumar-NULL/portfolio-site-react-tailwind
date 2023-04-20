@@ -1,7 +1,10 @@
 import { Card } from './Card'
 import { projectsData } from '../data'
-
-export const Home = ({ currentView, setCurrentView }) => {
+export interface homeProps{
+  currentView:string
+  setCurrentView:any
+}
+export const Home = ({ currentView, setCurrentView }:homeProps) => {
   return (
     <section className='w-full flex flex-col justify-center items-center h-full'>
       {projectsData.map((project) => {
