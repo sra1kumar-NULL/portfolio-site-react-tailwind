@@ -21,17 +21,17 @@ export const Layout = ({ children }: any) => {
             </main>
             <hr />
             <main className="text-white text-center w-full border-2 border-blue-500 rounded-sm ">Connect</main>
-            <section className="mx-auto w-11/12 flex gap-4 container mt-1">
-              <a className="w-8 h-6 cursor-pointer" target='_blank' href='https://www.linkedin.com/in/sravan-kumar-a73498211/'>
+            <section className="mx-auto w-11/12 flex justify-items-center container mt-1">
+              <a className="w-8 h-6 cursor-pointer  mx-1" target='_blank' href='https://www.linkedin.com/in/sravan-kumar-a73498211/'>
                 <FaLinkedin color='white' size={20} />
               </a>
-              <a className="w-8 h-6 cursor-pointer" target='_blank'href = "mailto:sravansandeep163@gmail.com?subject = Contact&body = Message">
+              <a className="w-8 h-6 cursor-pointer mx-1 " target='_blank'href = "mailto:sravansandeep163@gmail.com?subject = Contact&body = Message">
                 <FiMail color='white' size={20} />
               </a>
-              <a className="w-8 h-6 cursor-pointer" target='_blank' href='https://twitter.com/sra1z'>
+              <a className="w-8 h-6 cursor-pointer mx-1" target='_blank' href='https://twitter.com/sra1z'>
                 <FiTwitter color='white' size={20} />
               </a>
-              <a className="w-8 h-6 cursor-pointer" target='_blank' href='https://github.com/sra1kumar-NULL'>
+              <a className="w-8 h-6 cursor-pointer mx-1" target='_blank' href='https://github.com/sra1kumar-NULL'>
                 <FiGithub color='white' size={20} />
               </a>
             </section>
