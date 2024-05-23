@@ -1,5 +1,5 @@
 import { Card } from './Card'
-import { projectsData } from '../data'
+import { projectsData } from '../../data'
 export interface homeProps{
   currentView:string
   setCurrentView:any
