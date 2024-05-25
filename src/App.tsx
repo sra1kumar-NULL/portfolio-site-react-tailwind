@@ -68,9 +68,9 @@ export default function App() {
                   ...dataPacket,
                   tech_used: languages,
                 };
-                setGithubData((prev) => {
+                setGithubData((prev:any) => {
                   if (
-                    prev.filter((iterator) => iterator.id === repoItem.id)
+                    prev.filter((iterator:any) => iterator.id === repoItem.id)
                       ?.length
                   ) {
                     return prev;
