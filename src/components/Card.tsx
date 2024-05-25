@@ -4,10 +4,19 @@ interface cardProps {
   techUsed: string[];
   repoLink: string;
 }
+const titleFormatter=(title:string)=>{
+  const titleArray=title.split('-')
+  const titleUpdated = titleArray
+    .map((item) => `${item[0].toUpperCase() + item.slice(1)}`)
+    .join(" ");
+  return titleUpdated
+}
 export const Card = ({ title, name, techUsed, repoLink }: cardProps) => {
   return (
     <section className="w-full  flex flex-col items-start justify-center gap-2 m-2 p-4 ">
-      <h3 className="text-white  text-xl font-bold  my-1">{title}</h3>
+      <h3 className="text-white  text-xl font-bold  my-1">
+        {titleFormatter(title)}
+      </h3>
       <p className="text-slate-200 text-lg font-thin my-1">{name}</p>
       <section className="flex  gap-2 w-full flex-wrap my-1">
         {techUsed.map((tech) => (

@@ -1,20 +1,114 @@
 import { skills } from "../data";
 import { SideBar } from "./components/SideBar";
 import { Home } from "./components/Home";
-import { useState } from "react";
+import React from "react";
 import { FaLinkedin } from "react-icons/fa";
 import { FiTwitter, FiGithub, FiMail } from "react-icons/fi";
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<string>("Instagram Clone");
-  const [currentSection, setCurrentSection] = useState<Array<string>>([]);
+  const [currentView, setCurrentView] = React.useState<string>("");
+  const [currentSection, setCurrentSection] = React.useState<Array<string>>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [githubData, setGithubData] = React.useState<
+    {
+      id: Number;
+      title: String;
+      name: String;
+      tech_used: String[];
+      repo_link: String;
+    }[]
+  >([]);
+  const [profilePicture, setProfilePicture] = React.useState<string>("");
+  const fetchGitData = async () => {
+    const data = await fetch(
+      "https://api.github.com/users/sra1kumar-NULL/repos",
+      {
+        headers: {
+          authorization: `token ${import.meta.env.VITE_GITHUB_TOKEN}`,
+        },
+      }
+    );
+    return data;
+  };
+
+  React.useEffect(() => {
+    fetchGitData()
+      .then((response) => {
+        try {
+          response
+            .json()
+            .then((data) => {
+              data.map(async (item: any, index: number) => {
+                if (profilePicture !== item?.owner?.avatar_url) {
+                  setProfilePicture(item?.owner?.avatar_url);
+                }
+                const dataPacket = {
+                  id: item?.id ?? index,
+                  name: item?.name ?? "",
+                  tech_used: [],
+                  repo_link: item?.html_url,
+                };
+                const languages = await fetch(item?.languages_url, {
+                  headers: {
+                    authorization: `token ${import.meta.env.VITE_GITHUB_TOKEN}`,
+                  },
+                })
+                  .then((response) =>
+                    response
+                      .json()
+                      .then((data) => Object.keys(data))
+                      .catch((error) => {
+                        console.log(error);
+                      })
+                  )
+                  .catch((err) => {
+                    console.log(err);
+                  });
+                const repoItem = {
+                  ...dataPacket,
+                  tech_used: languages,
+                };
+                setGithubData((prev) => {
+                  if (
+                    prev.filter((iterator) => iterator.id === repoItem.id)
+                      ?.length
+                  ) {
+                    return prev;
+                  }
+                  return [...prev, repoItem];
+                });
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } catch (error) {
+          console.log(error, "response");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return () => {
+      setIsLoading(false);
+    };
+  }, []);
+
+  if (isLoading) {
+    return (
+      <main className="w-full h-full flex flex-1 justify-center items-center">
+        <div className="w-10 h-10 bg-zinc-900 animate-bounce rounded-full"/>
+      </main>
+    );
+  }
+  console.log(profilePicture);
 
   return (
     <main className="bg-slate-950 flex flex-1 w-full min-h-[100vh]">
       <section className="w-full md:p-6 flex flex-col justify-between gap-4">
         <section className="flex md:flex-row flex-col md:items-start md:justify-between">
           <section
-            className={`flex-1 flex flex-col max-h-[280px] overflow-y-scroll ${
+            className={`flex-1 flex flex-col ${
               currentSection.includes("project_details")
                 ? "visible opacity-100"
                 : "invisible opacity-0"
@@ -22,7 +116,7 @@ export default function App() {
             animate-opacity duration-1000 delay-500
             `}
           >
-            <Home currentView={currentView} setCurrentView={setCurrentView} />
+            <Home currentView={currentView} projectsData={githubData} />
           </section>
           <div className="h-full w-px bg-slate-700" />
           <section
@@ -35,65 +129,63 @@ export default function App() {
           >
             <SideBar
               currentView={currentView}
+              projectsData={githubData}
               setCurrentView={setCurrentView}
             />
           </section>
         </section>
         <div className="w-full h-px bg-slate-700" />
-        <section className="flex flex-row items-center justify-center gap-4 my-6 flex-wrap">
-          <button
-            className="w-32 h-32 bg-slate-900 rounded-xl flex justify-center items-center cursor-pointer "
-            onClick={() =>
-              setCurrentSection((prev) => {
-                if (prev.includes("project_details")) {
-                  return prev.filter((item) => item != "project_details");
+        <section
+          className={`flex flex-row items-center justify-center gap-2 my-6 flex-wrap `}
+        >
+          {[
+            {
+              key: "project_details",
+              value: "Project Details",
+            },
+            {
+              key: "project_links",
+              value: "Project Links",
+            },
+            {
+              key: "about",
+              value: "About",
+            },
+            {
+              key: "skills",
+              value: "Skills",
+            },
+          ].map((item) => (
+            <div
+              key={item.key}
+              className={`w-[136px] h-[136px] bg-slate-800  flex justify-center items-center  ${
+                currentSection.includes(item.key)
+                  ? "rotate-45 "
+                  : "animate-pulse rotate-0 rounded-3xl"
+              }
+            transition-all duration-1000
+            `}
+            >
+              <button
+                className={`w-32 h-32 bg-slate-700  flex justify-center items-center cursor-pointer ${
+                  currentSection.includes(item.key)
+                    ? "-rotate-45 "
+                    : "animate-pulse rotate-0 rounded-3xl"
                 }
-                return [...currentSection, "project_details"];
-              })
-            }
-          >
-            <h5 className="text-white">Project Details</h5>
-          </button>
-          <button
-            className="w-32 h-32 bg-slate-900 rounded-xl flex justify-center items-center cursor-pointer "
-            onClick={() =>
-              setCurrentSection((prev) => {
-                if (prev.includes("project_links")) {
-                  return prev.filter((item) => item != "project_links");
+            transition-all duration-1000`}
+                onClick={() =>
+                  setCurrentSection((prev) => {
+                    if (prev.includes(item.key)) {
+                      return prev.filter((iterator) => iterator !== item.key);
+                    }
+                    return [...currentSection, item.key];
+                  })
                 }
-                return [...currentSection, "project_links"];
-              })
-            }
-          >
-            <h5 className="text-white">Project Links</h5>
-          </button>
-          <button
-            className="w-32 h-32 bg-slate-900 rounded-xl flex justify-center items-center cursor-pointer "
-            onClick={() =>
-              setCurrentSection((prev) => {
-                if (prev.includes("about")) {
-                  return prev.filter((item) => item != "about");
-                }
-                return [...currentSection, "about"];
-              })
-            }
-          >
-            <h5 className="text-white">About</h5>
-          </button>
-          <button
-            className="w-32 h-32 bg-slate-900 rounded-xl flex justify-center items-center cursor-pointer "
-            onClick={() => {
-              setCurrentSection((prev) => {
-                if (prev.includes("skills")) {
-                  return prev.filter((item) => item != "skills");
-                } else {
-                  return [...currentSection, "skills"];
-                }
-              });
-            }}
-          >
-            <h5 className="text-white">Skills</h5>
-          </button>
+              >
+                <h5 className="text-white">{item.value}</h5>
+              </button>
+            </div>
+          ))}
         </section>
         <div className="w-full h-px bg-slate-700" />
         <div className="flex md:flex-row flex-col flex-1 gap-6">
@@ -107,6 +199,9 @@ export default function App() {
           >
             <section className="md:w-96 md:h-96 w-72 h-72 rounded-full flex justify-center items-center  bg-indigo-900 ">
               <section className="flex flex-col  items-center gap-6 mt-3">
+                <h2 className="text-white font-bold font-xs mx-auto md:max-w-80 max-w-60 text-center">
+                  Sravan Kumar Velangi
+                </h2>
                 <h2 className="text-white font-mono itallic font-xs mx-auto md:max-w-80 max-w-60 text-center">
                   I'm a full Stack Developer working in a start up.Started as
                   flutter Developer,but later found my interest in React.Now
@@ -155,7 +250,7 @@ export default function App() {
             }
             animate-opacity duration-1000 delay-500`}
           >
-            <section className="flex flex-1 flex-col  py-4 gap-8">
+            <section className="flex flex-1 flex-col items-center  py-4 gap-8">
               <section className="w-full rounded-lg  flex flex-row items-center   mx-auto gap-6">
                 <div className="text-black rounded-full p-2 text-center  bg-white">
                   Frontend
@@ -192,6 +287,13 @@ export default function App() {
                   ))}
                 </section>
               </section>
+              {profilePicture?.length && (
+                <img
+                  src={profilePicture}
+                  alt="profile picture"
+                  className="rounded-full w-40 h-40 border-indigo-600 border-4"
+                />
+              )}
             </section>
           </div>
         </div>

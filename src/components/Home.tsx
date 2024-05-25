@@ -1,17 +1,24 @@
 import { Card } from './Card'
-import { projectsData } from '../../data'
 export interface homeProps{
   currentView:string
-  setCurrentView:any
+  projectsData:any
 }
-export const Home = ({ currentView, setCurrentView }:homeProps) => {
+export const Home = ({ currentView, projectsData }:homeProps) => {
   return (
-    <section className='w-full flex flex-col justify-center items-center h-full'>
-      {projectsData.map((project) => {
-        if (currentView == project.title) {
-          return <Card key={project.id} title={project.title} name={project.name} techUsed={project.tech_used} repoLink={project.repo_link} />
+    <section className="w-full flex flex-col justify-start items-center  min-h-80 max-h-80 overflow-y-scroll">
+      {projectsData.map((project: any) => {
+        if (currentView == project.name) {
+          return (
+            <Card
+              key={project.id}
+              title={project.name}
+              name={project.name}
+              techUsed={project.tech_used}
+              repoLink={project.repo_link}
+            />
+          );
         }
       })}
     </section>
-  )
+  );
 }
