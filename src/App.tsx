@@ -68,9 +68,9 @@ export default function App() {
                   ...dataPacket,
                   tech_used: languages,
                 };
-                setGithubData((prev:any) => {
+                setGithubData((prev: any) => {
                   if (
-                    prev.filter((iterator:any) => iterator.id === repoItem.id)
+                    prev.filter((iterator: any) => iterator.id === repoItem.id)
                       ?.length
                   ) {
                     return prev;
@@ -88,16 +88,16 @@ export default function App() {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    return () => {
-      setIsLoading(false);
-    };
   }, []);
 
   if (isLoading) {
     return (
-      <main className="w-full h-full flex flex-1 justify-center items-center">
-        <div className="w-10 h-10 bg-zinc-900 animate-bounce rounded-full"/>
+      <main className="w-full h-[100vh] flex flex-1 justify-center items-center">
+        <div className="w-10 h-10 bg-slate-700 animate-bounce rounded-full" />
       </main>
     );
   }
