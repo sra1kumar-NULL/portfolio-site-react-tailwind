@@ -20,11 +20,15 @@ export default function Navbar() {
         <div className="flex flex-col items-center">
           <div className="relative mb-4">
             <div className="w-24 h-24 rounded-full overflow-hidden ring-2 ring-yellow-500/40 ring-offset-2 ring-offset-zinc-950 animate-glow-pulse">
-              <img
-                src="/avatar.jpg"
-                alt="avatar"
-                className="w-full h-full object-cover"
-              />
+              <picture>
+                <source srcSet="/avatar.webp" type="image/webp" />
+                <img
+                  src="/avatar.jpg"
+                  alt="avatar"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
             </div>
           </div>
           <h3 className="text-base font-bold text-zinc-100">
