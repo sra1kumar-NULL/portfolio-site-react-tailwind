@@ -1,10 +1,22 @@
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 lg:px-0">
+    <section id="about" className="py-12 sm:py-16 px-6 lg:px-0">
       <h2 className="text-sm font-semibold text-yellow-400 tracking-widest uppercase mb-6">
         About
       </h2>
-      <div className="max-w-2xl space-y-4 text-zinc-400 leading-relaxed">
+      <div className="flex flex-col sm:flex-row items-start gap-8 mb-8">
+        <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden ring-2 ring-yellow-500/40 ring-offset-2 ring-offset-zinc-950 flex-shrink-0 mx-auto sm:mx-0 lg:hidden">
+          <picture>
+            <source srcSet="/avatar.webp" type="image/webp" />
+            <img
+              src="/avatar.jpg"
+              alt="Sravan Kumar Velangi"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+        <div className="max-w-2xl space-y-4 text-zinc-400 leading-relaxed">
         <p>
           I'm a frontend engineer with a passion for building performant, accessible
           user interfaces. I currently work at <span className="text-zinc-200 font-medium">Razorpay</span>,
@@ -29,6 +41,7 @@ export default function About() {
           movies and anime ⚔️ (Berserk, Demon Slayer, AoT, Vinland Saga, Naruto, JJK),
           or writing technical blogs on Dev.to and Hashnode.
         </p>
+      </div>
       </div>
     </section>
   );

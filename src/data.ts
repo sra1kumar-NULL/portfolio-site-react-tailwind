@@ -213,7 +213,7 @@ export const testimonial = {
 export const interests = [
   { name: "Writing", emoji: "✍️", desc: "Technical blogging on Dev.to, Hashnode, and gluestack" },
   { name: "Badminton", emoji: "🏸", desc: "Competitive badminton — speed, agility, precision" },
-  { name: "Movies", emoji: "🎬", desc: "Cinema enthusiast — from GP of movies to indie films" },
+  { name: "Movies", emoji: "🎬", desc: "Cinema enthusiast — from GP of movies to indie films", url: "https://letterboxd.com/sra1kumar33/" },
   { name: "Anime", emoji: "⚔️", desc: "Berserk, Demon Slayer, Attack on Titan, Vinland Saga, Naruto, JJK" },
   { name: "Linux & FOSS", emoji: "🐧", desc: "Daily driving Linux, passionate about open source and FOSS philosophy" },
   { name: "Open Source", emoji: "🌐", desc: "Building and contributing to open source — gluestack-ui, side projects" },

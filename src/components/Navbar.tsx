@@ -80,15 +80,15 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-zinc-950/90 backdrop-blur-xl border-t border-zinc-800/40 px-4 py-2">
-        <div className="flex justify-around items-center">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-zinc-950/90 backdrop-blur-xl border-t border-zinc-800/40 px-4 py-2 overflow-x-auto scrollbar-hide">
+        <div className="flex justify-start items-center gap-1 min-w-max">
           {navItems.map((item) => {
             const isActive = activeId === item.id;
             return (
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className={`text-xs py-2 px-3 rounded-lg transition-all ${
+                className={`text-xs py-2 px-3 rounded-lg transition-all flex-shrink-0 ${
                   isActive ? "text-yellow-400 bg-yellow-500/10" : "text-zinc-500"
                 }`}
               >

@@ -32,3 +32,9 @@ html { scroll-behavior: smooth; }
 .animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
 .animate-gold-pulse { animation: gold-pulse 2s ease-in-out infinite; }
 .animate-float { animation: float 6s ease-in-out infinite; }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
