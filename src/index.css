@@ -2,15 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-.rogue {
-    font-family: "Rouge Script", cursive;
-    font-weight: 400;
-    font-style: normal;
+html { scroll-behavior: smooth; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #09090b; }
+::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+::selection { background-color: #fbbf2433; color: #e4e4e7; }
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(251,191,36,0.15); }
+  50% { box-shadow: 0 0 40px rgba(251,191,36,0.3); }
+}
+@keyframes gold-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.ubuntu-sans-mono-uniqueid {
-    font-family: "Ubuntu Sans Mono", monospace;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-}
+.animate-fade-in-up { animation: fade-in-up 0.7s ease-out forwards; }
+.animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+.animate-gold-pulse { animation: gold-pulse 2s ease-in-out infinite; }
+.animate-float { animation: float 6s ease-in-out infinite; }
