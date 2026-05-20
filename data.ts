@@ -60,6 +60,15 @@ export const projectsData = [
     repo_link: "https://github.com/sra1kumar-NULL/netconf-server-repo"
 
   },
+  {
+    id: 8,
+    title: 'Distro Pilot',
+    name: 'distro-pilot',
+    description: 'A comprehensive guide exploring Linux distributions and their use cases.',
+    tech_used: ['blog', 'linux'],
+    repo_link: "https://github.com/sra1kumar-NULL/distro-pilot",
+    blog_link: "https://sravankumarvelangi.hashnode.dev/distro-pilot"
+  },
 
 ]
 export const skills = {

@@ -1,5 +1,14 @@
 export const projectsData = [
   {
+    id: 10,
+    title: "Distro Pilot",
+    name: "distro-pilot",
+    description: "A comprehensive guide exploring Linux distributions — helping developers choose the right distro for their workflow.",
+    tech_used: ["linux", "go"],
+    repo_link: "https://github.com/sra1kumar-NULL/distro-pilot",
+    blog_link: "https://sravankumarvelangi.hashnode.dev/distro-pilot",
+  },
+  {
     id: 1,
     title: "Netflix UI",
     name: "netflix-ui-gluestack",
@@ -169,6 +178,12 @@ export const experience = [
 ];
 
 export const blogPosts = [
+  {
+    title: "Distro Pilot — A Comprehensive Guide to Linux Distributions",
+    url: "https://sravankumarvelangi.hashnode.dev/distro-pilot",
+    platform: "Hashnode",
+    year: "2026",
+  },
   {
     title: "Building Micro-Frontends with Svelte: A Modern Approach to Scalable Web Apps",
     url: "https://dev.to/sravan_kumarvelangi_0653/building-microfrontends-with-svelte-a-modern-approach-to-scalable-web-apps-4b5i",

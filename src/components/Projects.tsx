@@ -29,7 +29,7 @@ export default function Projects() {
         {projectsData.map((project, idx) => (
           <a
             key={project.id}
-            href={project.repo_link}
+            href={project.blog_link || project.repo_link}
             target="_blank"
             rel="noreferrer"
             className="group block p-5 rounded-xl bg-zinc-900/40 border border-zinc-800/60 hover:border-yellow-600/40 hover:bg-zinc-900/60 transition-all duration-300"
@@ -50,6 +50,10 @@ export default function Projects() {
                   {tech === "tailwind-css" ? "Tailwind" : tech === "expressjs" ? "Express" : tech === "nextjs" ? "Next.js" : tech}
                 </span>
               ))}
+            </div>
+            <div className="mt-3 flex gap-3 text-xs text-zinc-500">
+              {project.blog_link && <span>📝 Blog</span>}
+              {project.repo_link && <span>💻 Code</span>}
             </div>
           </a>
         ))}
